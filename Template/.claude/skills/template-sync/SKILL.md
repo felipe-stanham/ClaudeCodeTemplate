@@ -1,6 +1,6 @@
 ---
 name: template-sync
-description: Syncs this project with the latest ClaudeCodeTemplate. Updates CLAUDE.md, skills, agents, and template hooks without touching SYSTEM.md, MEMORY.md, or project hook scripts. Run when you want to pull template updates.
+description: Syncs this project with the latest ClaudeCodeTemplate. Updates CLAUDE.md, skills, agents, and template hooks without touching docs/SYSTEM.md, MEMORY.md, or project hook scripts. Run when you want to pull template updates.
 ---
 
 ## What This Skill Does
@@ -14,7 +14,7 @@ Pulls the latest version of [ClaudeCodeTemplate](https://github.com/felipe-stanh
 - `.claude/hooks/*/dispatcher.sh` — regenerated every sync
 
 **Never touched:**
-- `SYSTEM.md`
+- `docs/SYSTEM.md`
 - `MEMORY.md`
 - `.claude/hooks/*/project/` (your project-specific hook scripts)
 
@@ -119,7 +119,7 @@ done
 template-sync complete
   v{CURRENT_VERSION} → v{INCOMING_VERSION}
   Updated: CLAUDE.md, .claude/skills/, .claude/agents/, hooks/*/template/, dispatchers
-  Skipped (project-owned): SYSTEM.md, MEMORY.md, hooks/*/project/
+  Skipped (project-owned): docs/SYSTEM.md, MEMORY.md, hooks/*/project/
 ```
 
 Suggest the user stage and commit:
@@ -131,7 +131,7 @@ git add -A && git commit -m "chore: sync ClaudeCodeTemplate v{INCOMING_VERSION}"
 
 ## Rules
 
-- Do NOT modify `SYSTEM.md`, `MEMORY.md`, or any file under `hooks/*/project/`.
+- Do NOT modify `docs/SYSTEM.md`, `MEMORY.md`, or any file under `hooks/*/project/`.
 - If `rsync` is not available, stop and tell the user — do not attempt a manual copy.
 - If the clone/pull fails (no network, auth issue), stop and report the error clearly.
 - If current version == incoming version, report "already up to date" and make no changes.

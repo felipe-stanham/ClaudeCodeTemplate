@@ -1,6 +1,6 @@
 <!-- TEMPLATE VERSION: 0.1.0 -->
 <!-- DO NOT EDIT — managed by ClaudeCodeTemplate -->
-<!-- Project-specific instructions go in SYSTEM.md -->
+<!-- Project-specific instructions go in docs/SYSTEM.md -->
 
 # Claude Code — Project Instructions
 
@@ -8,16 +8,16 @@
 
 **ALWAYS do this before anything else, regardless of task complexity:**
 1. Read `MEMORY.md` if it exists.
-2. Read `SYSTEM.md` if it exists.
-3. Confirm with one line: "Loaded MEMORY.md ✓ / SYSTEM.md ✓"
+2. Read `docs/SYSTEM.md` if it exists.
+3. Confirm with one line: "Loaded MEMORY.md ✓ / docs/SYSTEM.md ✓"
 4. Do NOT read the artifact indexes (`docs/Pitches/INDEX.md`, `docs/Tasks/INDEX.md`, `docs/Projects/INDEX.md`) or any P/T/I file at startup. Load these only when the user asks to see open work or names a specific artifact.
 5. Run `git branch --show-current`. If the result is `main` or `tst`, **STOP immediately** and output: "WARNING: current branch is `{branch}` — this is a protected branch. No commits or file edits until you confirm this is a critical hotfix." Do not perform any write operation until the user explicitly authorizes work on the protected branch.
 
 ## System Context
 
-- `SYSTEM.md` is the always-loaded system index. It describes the existing system at a high level without requiring all project, task, or pitch files to be read.
-- `SYSTEM.md` must stay under ~150 lines. Detail belongs in individual P-xxxx.md, T-xxxx.md, or I-xxxx.md files. Lists of those artifacts live in their own index files (see below), not in SYSTEM.md.
-- `SYSTEM.md` contains:
+- `docs/SYSTEM.md` is the always-loaded system index. It describes the existing system at a high level without requiring all project, task, or pitch files to be read.
+- `docs/SYSTEM.md` must stay under ~150 lines. Detail belongs in individual P-xxxx.md, T-xxxx.md, or I-xxxx.md files. Lists of those artifacts live in their own index files (see below), not in docs/SYSTEM.md.
+- `docs/SYSTEM.md` contains:
   - A brief description of what the system does and its main components
   - Key architectural decisions that must be respected across all projects
   - Cross-project constraints that apply to every session
@@ -29,7 +29,7 @@
   - `docs/Projects/INDEX.md` — active and completed projects (`P-xxxx.md`)
 - Never load individual project, task, or pitch files unless the user specifies which one to work on. Never load the indexes at session startup — load them only when the user asks "what's open" or to pick something to work on.
 - When a project's final scope is marked `[DONE]`, update its entry in `docs/Projects/INDEX.md` to reflect completed status.
-- If creating a new SYSTEM.md or INDEX files, use templates at `docs/templates/`.
+- If creating a new docs/SYSTEM.md or INDEX files, use templates at `docs/templates/`.
 
 ## Git Ignore
 
@@ -72,7 +72,7 @@ There are three kinds of work artifact, ordered by maturity:
 Promote a task to a project (and stop work on the task) when **any** of the following becomes true:
 
 - The work naturally decomposes into more than 3 scopes.
-- It touches more than one named subsystem/component in SYSTEM.md.
+- It touches more than one named subsystem/component in docs/SYSTEM.md.
 - It requires schema or data-model changes (i.e., any change to `dataModel.md`).
 - It requires a new external service, API, or integration.
 
@@ -148,7 +148,7 @@ Every project must support at least two environment configurations: **dev** (loc
 - Use the appropriate skill when deploying.
 - **Targets and procedures** live in `docs/local/deployment.md` (gitignored — never committed). This file lists `dev` / `tst` / `prd` hosts, SSH details, restart sequences, and host-specific quirks. Keep `docs/local/` gitignored so the repo can be shared publicly without leaking infrastructure detail.
 - **Secrets** are in `.deploy-secrets` (gitignored, never committed). Keep secrets out of `docs/local/deployment.md` — it documents *where* and *how*, not credentials.
-- `SYSTEM.md` may reference `docs/local/deployment.md` by name but must not inline target details.
+- `docs/SYSTEM.md` may reference `docs/local/deployment.md` by name but must not inline target details.
 - After any deployment incident or procedural change, update both the corresponding skill and `docs/local/deployment.md` to reflect what actually works.
 - Never deploy to `prd` without explicit user confirmation.
 
@@ -157,7 +157,7 @@ Every project must support at least two environment configurations: **dev** (loc
 ## Logging
 
 - Use the language-appropriate logging framework. Never use `print()`, `console.log()`, or equivalent debug output for operational output.
-- Stack-specific logging setup (library, format config) belongs in `SYSTEM.md`.
+- Stack-specific logging setup (library, format config) belongs in `docs/SYSTEM.md`.
 - Log level is controlled by environment: `dev` defaults to `DEBUG`, `prod` defaults to `WARNING`.
 - Log format must include: timestamp, level, module name, and message. Example: `2026-03-20 14:30:00 [INFO] fetcher: Fetched 12 children for FEAT-100`.
 - Log to stdout/stderr by default. File logging is added only if the project requires it.
@@ -223,7 +223,7 @@ Make sure to follow the latest documentation when coding:
 ## CodeReview
 
 After finishing a task and before commit, delegate the review to the `code-reviewer` agent. The reviewer checks for:
-- Adherence to the project's architecture principles (from `SYSTEM.md`)
+- Adherence to the project's architecture principles (from `docs/SYSTEM.md`)
 - Correct environment handling (no hardcoded credentials, proper ENV checks)
 - Code simplicity (no unnecessary abstractions)
 - Consistency with existing patterns in the codebase
@@ -313,6 +313,6 @@ This project uses `ClaudeCodeTemplate` as its base template. To pull in the late
 
 > **Run skill:** `template-sync`
 
-The skill updates `CLAUDE.md`, `.claude/skills/`, `.claude/agents/`, and `.claude/hooks/*/template/` in place, without touching `SYSTEM.md`, `MEMORY.md`, or your project-specific hook scripts under `.claude/hooks/*/project/`.
+The skill updates `CLAUDE.md`, `.claude/skills/`, `.claude/agents/`, and `.claude/hooks/*/template/` in place, without touching `docs/SYSTEM.md`, `MEMORY.md`, or your project-specific hook scripts under `.claude/hooks/*/project/`.
 
 See `.claude/skills/template-sync/SKILL.md` for details.
