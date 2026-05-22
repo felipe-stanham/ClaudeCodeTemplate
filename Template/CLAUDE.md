@@ -1,19 +1,23 @@
+<!-- TEMPLATE VERSION: 0.1.0 -->
+<!-- DO NOT EDIT — managed by ClaudeCodeTemplate -->
+<!-- Project-specific instructions go in SYSTEM.md -->
+
 # Claude Code — Project Instructions
 
 ## Session Startup
 
 **ALWAYS do this before anything else, regardless of task complexity:**
 1. Read `MEMORY.md` if it exists.
-2. Read `docs/SYSTEM.md` if it exists.
-3. Confirm with one line: "Loaded MEMORY.md ✓ / docs/SYSTEM.md ✓"
+2. Read `SYSTEM.md` if it exists.
+3. Confirm with one line: "Loaded MEMORY.md ✓ / SYSTEM.md ✓"
 4. Do NOT read the artifact indexes (`docs/Pitches/INDEX.md`, `docs/Tasks/INDEX.md`, `docs/Projects/INDEX.md`) or any P/T/I file at startup. Load these only when the user asks to see open work or names a specific artifact.
 5. Run `git branch --show-current`. If the result is `main` or `tst`, **STOP immediately** and output: "WARNING: current branch is `{branch}` — this is a protected branch. No commits or file edits until you confirm this is a critical hotfix." Do not perform any write operation until the user explicitly authorizes work on the protected branch.
 
 ## System Context
 
-- `docs/SYSTEM.md` is the always-loaded system index. It describes the existing system at a high level without requiring all project, task, or pitch files to be read.
-- `docs/SYSTEM.md` must stay under ~150 lines. Detail belongs in individual P-xxxx.md, T-xxxx.md, or I-xxxx.md files. Lists of those artifacts live in their own index files (see below), not in SYSTEM.md.
-- `docs/SYSTEM.md` contains:
+- `SYSTEM.md` is the always-loaded system index. It describes the existing system at a high level without requiring all project, task, or pitch files to be read.
+- `SYSTEM.md` must stay under ~150 lines. Detail belongs in individual P-xxxx.md, T-xxxx.md, or I-xxxx.md files. Lists of those artifacts live in their own index files (see below), not in SYSTEM.md.
+- `SYSTEM.md` contains:
   - A brief description of what the system does and its main components
   - Key architectural decisions that must be respected across all projects
   - Cross-project constraints that apply to every session
@@ -144,7 +148,7 @@ Every project must support at least two environment configurations: **dev** (loc
 - Use the appropriate skill when deploying.
 - **Targets and procedures** live in `docs/local/deployment.md` (gitignored — never committed). This file lists `dev` / `tst` / `prd` hosts, SSH details, restart sequences, and host-specific quirks. Keep `docs/local/` gitignored so the repo can be shared publicly without leaking infrastructure detail.
 - **Secrets** are in `.deploy-secrets` (gitignored, never committed). Keep secrets out of `docs/local/deployment.md` — it documents *where* and *how*, not credentials.
-- `docs/SYSTEM.md` may reference `docs/local/deployment.md` by name but must not inline target details.
+- `SYSTEM.md` may reference `docs/local/deployment.md` by name but must not inline target details.
 - After any deployment incident or procedural change, update both the corresponding skill and `docs/local/deployment.md` to reflect what actually works.
 - Never deploy to `prd` without explicit user confirmation.
 
@@ -152,7 +156,8 @@ Every project must support at least two environment configurations: **dev** (loc
 
 ## Logging
 
-- Use Python `logging` module (or the language-appropriate equivalent). Never use `print()` for operational output.
+- Use the language-appropriate logging framework. Never use `print()`, `console.log()`, or equivalent debug output for operational output.
+- Stack-specific logging setup (library, format config) belongs in `SYSTEM.md`.
 - Log level is controlled by environment: `dev` defaults to `DEBUG`, `prod` defaults to `WARNING`.
 - Log format must include: timestamp, level, module name, and message. Example: `2026-03-20 14:30:00 [INFO] fetcher: Fetched 12 children for FEAT-100`.
 - Log to stdout/stderr by default. File logging is added only if the project requires it.
@@ -299,3 +304,15 @@ After completing a scope and passing code review, delegate to the `tester` agent
     - Use `erDiagram` for databases.
     - Include field types and key relationships
 - `dataModel.md` always reflects the **current** schema. Migrations are project-level implementation artifacts — if a project requires them, manage them within the project's own directory structure, not in `docs/System/`.
+
+---
+
+## Template Sync
+
+This project uses `ClaudeCodeTemplate` as its base template. To pull in the latest template updates (new skills, agent improvements, hook changes):
+
+> **Run skill:** `template-sync`
+
+The skill updates `CLAUDE.md`, `.claude/skills/`, `.claude/agents/`, and `.claude/hooks/*/template/` in place, without touching `SYSTEM.md`, `MEMORY.md`, or your project-specific hook scripts under `.claude/hooks/*/project/`.
+
+See `.claude/skills/template-sync/SKILL.md` for details.

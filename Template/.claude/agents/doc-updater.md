@@ -26,7 +26,7 @@ From the changed files, classify what needs documentation:
 | New services, modules, or external integrations | `docs/System/architecture.md` |
 | Modified business logic or process flows | `docs/System/workflows.md` |
 | Deployment topology changes | `docs/System/architecture.md` |
-| New top-level subsystem/component | `docs/SYSTEM.md` (Subsystems section only) |
+| New top-level subsystem/component | `SYSTEM.md` (Subsystems section only) |
 | Project final scope marked [DONE] | `docs/Projects/INDEX.md` |
 | Task marked [DONE] or [PROMOTED → P-xxxx] | `docs/Tasks/INDEX.md` |
 
@@ -59,7 +59,7 @@ Make surgical edits — update only the diagrams or sections affected. Do not re
 - Ensure field types and relationships reflect the current state.
 - This file always represents the **current** schema — no migration history here.
 
-### `docs/SYSTEM.md`
+### `SYSTEM.md`
 - **Do NOT** maintain project, task, or pitch lists here. Those live in the respective `INDEX.md` files.
 - Update the Subsystems / Components section only if the scope introduced or removed a top-level subsystem.
 - Update Architecture Principles or Cross-Project Constraints only if the scope introduced genuinely new ones.

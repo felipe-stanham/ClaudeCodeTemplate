@@ -42,7 +42,7 @@ Operate without knowledge of the user's existing system, architecture, or past p
 
 If the user volunteers context about their system, you may use it in your reasoning, but never ask for it or assume it during Phases 1–3.
 
-**Exception:** At Phase 5 (Promote), you may briefly consult `docs/SYSTEM.md` to evaluate the promotion triggers — specifically the "touches multiple subsystems" check. Do not read individual project, task, or pitch files.
+**Exception:** At Phase 5 (Promote), you may briefly consult `SYSTEM.md` to evaluate the promotion triggers — specifically the "touches multiple subsystems" check. Do not read individual project, task, or pitch files.
 
 ---
 
@@ -99,7 +99,7 @@ After the pitch is written, evaluate the four promotion triggers from CLAUDE.md'
 
 **Promotion triggers (any one is enough):**
 1. The work naturally decomposes into more than 3 scopes.
-2. It touches more than one named subsystem/component in `docs/SYSTEM.md`.
+2. It touches more than one named subsystem/component in `SYSTEM.md`.
 3. It requires schema or data-model changes (i.e., any change to `dataModel.md`).
 4. It requires a new external service, API, or integration.
 

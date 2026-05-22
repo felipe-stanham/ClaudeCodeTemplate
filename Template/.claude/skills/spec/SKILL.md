@@ -16,12 +16,12 @@ The `pitch` skill operates upstream of you: it shapes raw ideas into pitches and
 ## Session Startup
 
 At the start of every session, load existing system context:
-1. Read `docs/SYSTEM.md` if it exists — it describes the current system, architecture principles, cross-project constraints, and named subsystems.
+1. Read `SYSTEM.md` if it exists — it describes the current system, architecture principles, cross-project constraints, and named subsystems.
 2. Read `docs/System/architecture.md`, `docs/System/dataModel.md`, and `docs/System/workflows.md` if they exist — these describe the current implementation at a high level.
 3. Read `docs/Projects/INDEX.md` if it exists — a one-line view of which projects exist and their status. Do NOT open individual `P-xxxx.md` files unless the user names one.
 4. If invoked from a promoted pitch, read the relevant `docs/Pitches/I-xxxx.md` as the starting input.
 
-For the first project (no `docs/SYSTEM.md` exists), skip steps 1–3.
+For the first project (no `SYSTEM.md` exists), skip steps 1–3.
 
 ---
 
@@ -250,7 +250,7 @@ The handoff document that Claude Code reads to begin implementation. Always prod
 
 ## Important Rules for Claude Code Compatibility
 
-1. **`P-xxxx.md` is the primary handoff document** — it is the first project-specific document Claude Code reads. Claude Code also reads `MEMORY.md` and `docs/SYSTEM.md` at every session start as persistent context. `P-xxxx.md` must not duplicate that context, but it must not assume its absence either — cross-project constraints and architectural decisions live in `SYSTEM.md`, not here.
+1. **`P-xxxx.md` is the primary handoff document** — it is the first project-specific document Claude Code reads. Claude Code also reads `MEMORY.md` and `SYSTEM.md` at every session start as persistent context. `P-xxxx.md` must not duplicate that context, but it must not assume its absence either — cross-project constraints and architectural decisions live in `SYSTEM.md`, not here.
 2. **The full spec package is available** — Claude Code will read `spec.md`, `workflows.md`, `data_model.md`, and `architecture.md` from `docs/Projects/P-xxxx/` during its planning phase. These are reference material; `P-xxxx.md` is the execution contract.
 3. **Capabilities (cap-XXX) are the atomic unit** — Claude Code should be able to implement one cap at a time.
 4. **Acceptance criteria must be executable** — Each acceptance criterion must include a concrete input and a concrete expected output. The `tester` agent generates verification scripts from these directly; vague verbs ("system handles X") are not sufficient.
