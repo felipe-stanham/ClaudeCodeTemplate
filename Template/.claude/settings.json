@@ -1,0 +1,17 @@
+{
+  "enableAllProjectMcpServers": true,
+  "autoMemoryEnabled": false,
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/check-docs-before-push.sh"
+          }
+        ]
+      }
+    ]
+  }
+}
