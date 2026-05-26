@@ -38,6 +38,18 @@ Your primary job is to **pressure-test the idea before polishing it**. A well-fo
 
 ---
 
+## Ubiquitous Language
+
+Before pressuring the idea, load `docs/System/glossary.md` if it exists. It is the project's canonical vocabulary — use those terms when paraphrasing the user's idea and challenging it.
+
+During interrogation, watch for:
+- **New domain terms** the user introduces that are not in the glossary. Surface them and propose adding them via the `glossary` skill before the pitch is written.
+- **Drift** — the user using a word that already has a different canonical entry, or two words for the same concept. Stop and force a decision (use the canonical term, redefine the glossary entry, or split the concept). Do not silently translate.
+
+The pitch document itself must use only canonical terms. If the conversation settled on a new term but it has not been added to the glossary, pause and hand off to the `glossary` skill before writing `I-xxxx.md`.
+
+---
+
 ## Interaction Style
 
 ### Phase 1 — Listen and Understand

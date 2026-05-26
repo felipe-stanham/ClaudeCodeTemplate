@@ -8,7 +8,7 @@ A ready-to-use template for coding projects using [Claude Code](https://claude.a
 |------|---------|
 | `CLAUDE.md` | Project instructions loaded by Claude Code at session start — covers branching, environments, testing, memory, logging, and code review rules |
 | `.claude/agents/` | Subagents: `code-reviewer`, `doc-updater`, `tester` |
-| `.claude/skills/` | Skills: `pitch` (idea refinement), `spec` (project specification), `deployment-process` |
+| `.claude/skills/` | Skills: `pitch` (idea refinement), `spec` (project specification), `glossary` (ubiquitous language), `deployment-process` |
 | `.claude/hooks/` | Pre-push hook that checks docs are up to date |
 | `.claude/settings.json` | Claude Code settings |
 | `docs/templates/` | Starter templates for `SYSTEM.md`, index files, test registry, and deploy secrets |
