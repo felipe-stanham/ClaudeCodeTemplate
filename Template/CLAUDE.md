@@ -53,6 +53,7 @@ Every project must have a `.gitignore` that excludes at minimum:
 ## General
 
 - Work artifacts follow a maturity ladder: **Pitch (`I-xxxx.md`) → Task (`T-xxxx.md`) → Project (`P-xxxx.md`)**. See the "Work Artifacts" section below for details.
+- Before writing any code, create a docs/Tasks/T-xxxx.md for the work (or confirm the existing task/project file you are working under). Do not start implementation without an active task or scope on record. This applies even in Auto Mode.
 - When coding, do not modify the spec — if something in it is wrong or unclear, stop and ask.
 - Do NOT work on a project, task, or pitch you have not been instructed to implement. I will name the specific file.
 - Do NOT read all the files in `docs/Projects/`, `docs/Tasks/`, or `docs/Pitches/` unless instructed to. Use the corresponding `INDEX.md` if you need to scan what's open.
@@ -280,8 +281,7 @@ After completing a scope and passing code review, delegate to the `tester` agent
 
 **When to run regression tests:**
 - Before merging `dev` into `tst` (i.e., after all scopes are complete).
-- Before deploying to any target.
-- Delegate to the `tester` agent. If any fail, do not merge or deploy.
+- Delegate to the `tester` agent. If any fail, do not merge.
 
 ---
 
