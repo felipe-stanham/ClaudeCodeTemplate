@@ -72,7 +72,8 @@ pitch, if there is one). Do not write a task.
 
 ### 2. Draft the task
 
-Use `docs/templates/TASK.template.md`. Fill every section:
+Use `docs/templates/TASK.template.md` (if the project doesn't have it yet, follow the Definition of Ready
+sections in CLAUDE.md). Fill every section:
 
 - **Goal** — 1–2 lines, glossary terms only.
 - **Touches** — the files/modules expected to change, plus one existing file as the pattern reference.
