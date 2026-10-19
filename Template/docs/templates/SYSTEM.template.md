@@ -25,6 +25,16 @@
 
 - [Constraint that applies to every project, e.g., "All auth uses JWT via auth-service"]
 
+## Architecture Invariants
+
+Rules the code must never break, and what enforces each one. Checks run from
+`.claude/arch-check.sh` (before every push, and in CI). Use the `arch-check` skill to add one.
+
+| # | Invariant | Enforced by | Mechanism |
+|---|-----------|-------------|-----------|
+| 1 | [e.g., "domain/ never imports from infrastructure/"] | [e.g., import-linter contract `domain-independent`] | `.claude/arch-check.sh` |
+<!-- A row with an empty "Enforced by" is a wish, not an invariant. Delete this table if the project has none yet. -->
+
 ## Subsystems / Components
 
 - [Named subsystem 1] — [one-line description]
