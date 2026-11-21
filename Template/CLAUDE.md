@@ -1,4 +1,4 @@
-<!-- TEMPLATE VERSION: 1.0.0 -->
+<!-- TEMPLATE VERSION: 1.1.0 -->
 <!-- DO NOT EDIT — managed by ClaudeCodeTemplate -->
 <!-- Project-specific instructions go in docs/SYSTEM.md -->
 
@@ -227,6 +227,7 @@ main (production-ready)
 - **All code is written in a worktree** — one per task/scope branch, even with a single session:
   `git worktree add ../<repo>-wt/<branch> -b <branch> dev` (base `main`/`tst` for a hotfix).
   Worktrees live in a sibling directory, not inside the repo. Remove them after the merge: `git worktree remove ../<repo>-wt/<branch>`.
+  That directory is outside the session's folder, so some commands there (e.g. `chmod`) can be denied: add `../<repo>-wt` to the session's folders, or to `permissions.additionalDirectories` in `.claude/settings.local.json`.
 - **Parallel sessions** — run one session per worktree. Never manually clone the repo into separate folders. Do not use `isolation: worktree` for the `implementer` — it must work in the task/scope worktree the main session is in.
 
 | Change | Committed on | By |
@@ -234,6 +235,7 @@ main (production-ready)
 | Pitches, tasks, projects/specs, glossary, their INDEX entries | `dev` (primary checkout), pushed as written | planning skills |
 | Spec or task edits during implementation (after `BLOCKED:`) | `dev` (primary checkout), then `git merge dev` into the task/scope branch | main session |
 | Code + `docs/System` updates | the task/scope branch | main session (Execution Loop) |
+| `docs/System` corrections with no code change (from `docs-audit`) | `dev` (primary checkout) | main session |
 | Status (`[IN PROGRESS]`, `[DONE]`, `[x]`), INDEX status, tests promoted into `TESTS.md` | `dev`, right after the branch merges | main session |
 
 ### Rules
@@ -246,7 +248,7 @@ main (production-ready)
 ### Promotion Flow
 
 1. **Task/scope → `dev`:** When the Execution Loop finishes (review passed, tests executed and passed, docs updated, branch pushed), merge the branch into `dev`. Then, on `dev`: mark the task/scope `[DONE]`, update its INDEX entry, promote critical acceptance criteria into `TESTS.md`, and push. Delete the branch and remove its worktree.
-2. **`dev` → `tst`:** When the project is complete (all scopes `[DONE]`), run regression tests on `dev`. If all pass, merge `dev` into `tst` and deploy to `tst` targets for validation.
+2. **`dev` → `tst`:** When the project is complete (all scopes `[DONE]`), on `dev`: run regression tests (`tester`) and the `docs-audit` agent. Resolve every difference it reports (see "Documentation"). When both are clean, merge `dev` into `tst` and deploy to `tst` targets for validation.
 3. **`tst` → `main`:** After I review and approve on `tst`, merge `tst` into `main`. Deploy to `prd` targets.
 
 ---
@@ -261,7 +263,7 @@ Always plan before coding:
 - A task or scope is handed to the `implementer` only when it meets the **Definition of Ready** (see "Work Artifacts").
 
 Make sure to follow the latest documentation when coding:
-1. Read `architecture.md`, `dataModel.md` and `workflows.md` from the `docs/System/` folder.
+1. Read `architecture.md`, `dataModel.md` and `workflows.md` from the `docs/System/` folder, and `map.md` if it exists.
 2. Explore relevant files, patterns, and existing implementations.
 
 ---
@@ -276,8 +278,8 @@ How every task or scope is built. The main session runs it from the task/scope w
 3. **Review:** invoke `code-reviewer` (opus · xhigh). BLOCK → rework.
 4. **Test:** invoke `tester` (opus · high) on the acceptance criteria. FAIL → rework.
 5. **Rework:** re-invoke `implementer` with `model: opus` and the findings verbatim, then go back to step 3. **At most 2 rework cycles per task/scope in total** (review and test failures share the counter); after that, stop and escalate to the user with the findings.
-6. **Document:** invoke `doc-updater` (sonnet · medium). It ends with `DOCS: updated …` or `DOCS: no changes needed`.
-7. **Commit:** one commit with the code, the tester's `tests/cache/` scripts, and the docs. If doc-updater reported `no changes needed`, add the trailer `Docs-Checked: no-changes` to the commit message. Push the branch.
+6. **Document:** invoke `doc-updater` (sonnet · medium). It updates the docs, corrects statements the change made false, and regenerates the system map if there is one. It ends with `DOCS: updated …` or `DOCS: no changes needed — <why>`, preceded by a `GLOSSARY: <term> — …` line for each glossary definition the change made false: run the `glossary` skill for those (on `dev`) before merging.
+7. **Commit:** one commit with the code, the tester's `tests/cache/` scripts, and the docs (map included). If doc-updater reported `no changes needed — <why>`, add the trailer `Docs-Checked: no-changes — <why>` to the commit message. Push the branch.
 8. **Merge:** follow "Promotion Flow" step 1.
 
 Fable is used only when the user asks for it — for planning by switching the session model, for a rework by passing `model: fable` to the `implementer`.
@@ -322,7 +324,10 @@ Do not commit until the review passes.
 - Document all APIs as part of the task that implements them. REST APIs must use OpenAPI.
 - The `doc-updater` agent updates `docs/System/workflows.md`, `architecture.md`, and `dataModel.md` in step 6 of the Execution Loop, based on what actually changed. Its changes are committed with the code.
 - `docs/System/dataModel.md` always reflects the **current** schema. Migrations are project-level artifacts — manage them within the project's own directory, not in `docs/System/`.
-- *Enforced by* `01-check-docs-before-push.sh`: a push whose commits change source files is denied unless they also touch `docs/System/` or carry the `Docs-Checked: no-changes` trailer.
+- **Don't hand-copy what the code defines.** Do not write into `docs/System/` or `docs/SYSTEM.md` data that the code defines and that changes with it — versions, counts, lists of routes/tables/config keys, allowed values. Point to the source (e.g. `SCRAPER_VERSION` in `scrapers/*.py`) or to the system map.
+- **System map** (optional, recommended): `docs/System/map/index.html` and `map.md`, generated from the code by `docs/System/map/build.py` — never edited by hand. Set it up with the `system-map` skill. Its `--check` is an Architecture Invariant, so it runs before every push and in CI.
+- **Audit:** the `docs-audit` agent compares every checkable statement in the docs with the code. It runs before `dev → tst` (see "Promotion Flow") and whenever you ask. Doc-side differences are fixed on `dev` (glossary ones via the `glossary` skill); a `code-suspect` difference goes to the user, and if the code is wrong, to a task.
+- *Enforced by* `01-check-docs-before-push.sh`: a push whose commits change source files is denied unless they also touch the hand-written docs in `docs/System/` (the generated map does not count) or carry a `Docs-Checked: no-changes — <why>` trailer.
 
 ---
 
@@ -332,11 +337,11 @@ Hooks in `.claude/hooks/pre-tool/template/` that block or ask before a tool call
 
 | Hook | Trigger | Effect |
 |---|---|---|
-| `01-check-docs-before-push.sh` | `git push` | Deny: source changed without `docs/System/` updates or `Docs-Checked: no-changes` |
+| `01-check-docs-before-push.sh` | `git push` | Deny: source changed without updates to hand-written `docs/System/` docs (not the generated map) or `Docs-Checked: no-changes` |
 | `02-protected-branch.sh` | `git commit` / `merge` / `cherry-pick` / `revert` on, or `git push` to, `main`/`master`/`tst` | Ask the user |
 | `03-no-secrets.sh` | `git add`, `git commit` | Deny: `.env`, `.deploy-secrets`, `docs/local/` not ignored, tracked, staged, or force-added |
 | `04-task-before-code.sh` | Edit/Write on code (not `docs/`, `*.md`, `.claude/`, `.gitignore`, `.githooks/`, `tests/cache/`) | Deny outside a `task-T-*` / `scope-P-*` branch with an existing task/project file |
-| `05-arch-check-before-push.sh` | `git push` | Deny when `.claude/arch-check.sh` (if present) fails — see the `arch-check` skill |
+| `05-arch-check-before-push.sh` | `git push` | Deny when `.claude/arch-check.sh` (if present) fails or is not executable — see the `arch-check` skill |
 
 **Hard gates vs code-reviewer:** gates catch mechanical rule breaks (wrong branch, secrets, missing docs, broken invariants) before they happen; the `code-reviewer` judges what a script cannot (design, simplicity, consistency). Gates are not a sandbox: `04` sees only the Edit/Write tools, so a file written through Bash bypasses it. Never route around a gate — if one blocks you, fix the cause or ask the user.
 
