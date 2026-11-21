@@ -5,6 +5,7 @@
 .claude/agents/README.md
 .claude/agents/code-reviewer.md
 .claude/agents/doc-updater.md
+.claude/agents/docs-audit.md
 .claude/agents/implementer.md
 .claude/agents/tester.md
 .claude/hooks/post-tool/dispatcher.sh
@@ -27,6 +28,13 @@ seed .claude/skills/deployment-process/SKILL.md
 .claude/skills/pitch/SKILL.md
 .claude/skills/share/SKILL.md
 .claude/skills/spec/SKILL.md
+.claude/skills/system-map/SKILL.md
+.claude/skills/system-map/kit/build.py
+.claude/skills/system-map/kit/facts.py
+.claude/skills/system-map/kit/figures.py
+.claude/skills/system-map/kit/page.py
+.claude/skills/system-map/kit/sections.py
+.claude/skills/system-map/kit/svgkit.py
 .claude/skills/task/SKILL.md
 .claude/skills/template-sync/MIGRATIONS.md
 .claude/skills/template-sync/SKILL.md

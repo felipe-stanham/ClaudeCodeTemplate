@@ -77,7 +77,8 @@ exit $FAILED
 
 - Keep it fast (seconds): it runs on every push.
 - Print the invariant number before each check so a failure points to the table row.
-- Make it executable (`chmod +x .claude/arch-check.sh`) — the hook skips non-executable scripts.
+- Make it executable (`chmod +x .claude/arch-check.sh`, or `git update-index --chmod=+x` when `chmod` is
+  denied) — the hook denies every push while the script exists but is not executable.
 - Add tool config files (`.importlinter`, `.dependency-cruiser.js`, …) in the same commit.
 
 ### 5. Wire CI (first time only)

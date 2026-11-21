@@ -1,6 +1,8 @@
 #!/bin/bash
 # Docs gate: on `git push`, deny when unpushed commits change source files but neither
-# touch docs/System/ nor carry a "Docs-Checked: no-changes" trailer.
+# touch the hand-written docs in docs/System/ nor carry a "Docs-Checked: no-changes" trailer.
+# The generated system map (docs/System/map.md, docs/System/map/) does not count: a rebuild
+# touches it without anyone reviewing the prose. `build.py --check` verifies it instead.
 # Unpushed = since the upstream, or since the fork point from dev on a branch's first push.
 . "$(dirname "$0")/lib/common.sh"
 
@@ -23,9 +25,10 @@ CHANGED="$(git -C "$REPO" log "$RANGE" --name-only --pretty=format: 2>/dev/null 
 SRC_COUNT="$(printf '%s\n' "$CHANGED" | grep -vE '^(docs/|\.claude/|\.githooks/|\.gitignore$|[^/]+\.md$)' | grep -c .)"
 [ "$SRC_COUNT" -eq 0 ] && exit 0
 
-printf '%s\n' "$CHANGED" | grep -q '^docs/System/' && exit 0
+printf '%s\n' "$CHANGED" | grep '^docs/System/' | grep -qvE '^docs/System/(map\.md$|map/)' && exit 0
 git -C "$REPO" log "$RANGE" --format=%B | grep -qiE '^Docs-Checked:[[:space:]]*no-changes' && exit 0
 
-deny "$SRC_COUNT source file(s) changed in unpushed commits but docs/System/ has no updates.
-Run the doc-updater agent and commit its changes. If it reports that no documentation
-needs to change, add the trailer \"Docs-Checked: no-changes\" to the commit message."
+deny "$SRC_COUNT source file(s) changed in unpushed commits but docs/System/ has no updates
+(the generated map does not count). Run the doc-updater agent and commit its changes. If it
+reports that no documentation needs to change, add its trailer to the commit message:
+\"Docs-Checked: no-changes — <reason>\"."
