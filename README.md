@@ -9,7 +9,7 @@ A ready-to-use template for coding projects using [Claude Code](https://claude.a
 | `CLAUDE.md` | Project instructions loaded by Claude Code at session start — covers the Execution Loop, branching and worktrees, environments, testing, memory, logging, and hard gates |
 | `.claude/agents/` | Subagents with pinned models: `implementer` (sonnet — writes the code), `code-reviewer` (opus), `tester` (opus), `doc-updater` (sonnet), `docs-audit` (opus — full docs-vs-code audit before `dev → tst`) |
 | `.claude/skills/` | Skills: `pitch` (idea refinement), `task` (ready-to-implement tasks, small changes, hotfixes), `spec` (project specification), `glossary` (ubiquitous language), `arch-check` (architecture invariants), `system-map` (HTML system map generated from the code, checked in CI), `deployment-process`, `share` (shareable HTML mini-sites from docs), `template-sync` |
-| `.claude/hooks/` | Hard gates: docs updated before push, protected branches ask, no secrets in git, no code outside a task/scope branch, architecture check before push. At session start: tells you when a newer template version is out, with its release notes |
+| `.claude/hooks/` | Hard gates: docs updated before push, protected branches ask, no secrets in git, no code outside a task/scope branch, architecture check before push. At session start: shows the template version in use and tells you when a newer one is out, with its release notes |
 | `.claude/settings.json` | Claude Code settings |
 | `.githooks/` | `pre-commit` secrets backstop for commits made outside Claude Code |
 | `docs/templates/` | Starter templates for `SYSTEM.md`, tasks, index files, test registry, deploy secrets, and the arch-check CI workflow |
@@ -30,7 +30,7 @@ Pitch (I-xxxx.md) → Task (T-xxxx.md) → Project (P-xxxx.md)
 
 Ideas are refined with `/pitch`, scoped into tasks (`/task`) or projects (`/spec`) on `dev`, implemented in a worktree per task/scope branch, and promoted through `dev → tst → main`.
 
-## Workflow and model routing (v1.2.0)
+## Workflow and model routing (v1.2.1)
 
 Opus plans and judges; Sonnet codes against tightly defined scopes. Planning runs in the main session (model chosen by you — Opus recommended, Fable opt-in). Coding, review, and testing run in subagents with pinned models. Hexagons are hard gates enforced by hooks. The primary checkout always stays on `dev`, where every planning doc (pitches, tasks, projects/specs) is committed and pushed as it is written. Code never goes to `dev` directly: every change, however small, gets a task (`T-xxxx.md`) or project scope and is built in its own worktree on a branch created from `dev`, then merged back.
 

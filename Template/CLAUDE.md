@@ -1,4 +1,4 @@
-<!-- TEMPLATE VERSION: 1.2.0 -->
+<!-- TEMPLATE VERSION: 1.2.1 -->
 <!-- DO NOT EDIT — managed by ClaudeCodeTemplate -->
 <!-- Project-specific instructions go in docs/SYSTEM.md -->
 
@@ -10,7 +10,7 @@
 1. Read `MEMORY.md` if it exists.
 2. Read `docs/SYSTEM.md` if it exists.
 3. Read `docs/System/glossary.md` if it exists — this is the project's Ubiquitous Language. Every artifact and conversation must use its canonical terms.
-4. Confirm with one line: "Loaded MEMORY.md ✓ / docs/SYSTEM.md ✓ / glossary.md ✓"
+4. Confirm with one line: "Loaded MEMORY.md ✓ / docs/SYSTEM.md ✓ / glossary.md ✓ · ClaudeCodeTemplate v{version}". The version comes from the session-start hook's "ClaudeCodeTemplate version in use" line; without it, read it with `head -1 CLAUDE.md` (the HTML comment on line 1 is not in your context).
 5. Do NOT read the artifact indexes (`docs/Pitches/INDEX.md`, `docs/Tasks/INDEX.md`, `docs/Projects/INDEX.md`) or any P/T/I file at startup. Load these only when the user asks to see open work or names a specific artifact.
 6. Run `git branch --show-current` and act on the result:
    - `main` or `tst` → **STOP** and output: "WARNING: current branch is `{branch}` — a protected branch. Work happens on `dev` (planning) or in a task/scope worktree (code)." Do not write anything until the user says what to do.
@@ -356,6 +356,6 @@ This project uses `ClaudeCodeTemplate` as its base template. To pull in the late
 
 The skill updates `CLAUDE.md`, the template-owned files in `.claude/skills/` and `.claude/agents/` (listed in `.claude/.template-manifest`), `.claude/hooks/*/template/`, the dispatchers, and the template's hook entries in `.claude/settings.json`. It never touches `docs/SYSTEM.md`, `MEMORY.md`, `.claude/arch-check.sh`, project skills/agents, or your hook scripts under `.claude/hooks/*/project/`. Release notes per version are in `.claude/skills/template-sync/CHANGELOG.md`; breaking changes and manual steps in `MIGRATIONS.md` next to it.
 
-**Update check:** at the start of each new session, `.claude/hooks/session-start/template/01-template-update-check.sh` compares line 1 of this file with the latest template on GitHub (fetched at most once a day, silent when offline). When the project is behind, it adds the release notes to the session so you can offer the sync (Session Startup step 8). It never changes the project. To turn it off, set `CLAUDE_TEMPLATE_UPDATE_CHECK=0` in the `env` of `.claude/settings.local.json`.
+**Version and update check:** at the start of each new session, `.claude/hooks/session-start/template/01-template-update-check.sh` tells the session which template version this project uses (shown in the Session Startup confirmation line), and compares it with the latest template on GitHub (fetched at most once a day, silent when offline). When the project is behind, it adds the release notes to the session so you can offer the sync (Session Startup step 8). It never changes the project. To turn the update check off (the version line stays), set `CLAUDE_TEMPLATE_UPDATE_CHECK=0` in the `env` of `.claude/settings.local.json`.
 
 See `.claude/skills/template-sync/SKILL.md` for details.
