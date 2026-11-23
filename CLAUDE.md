@@ -13,6 +13,7 @@ This repo IS the template. All template content lives under `Template/`. The rep
 | `Template/.claude/agents/` | Agents bundled with the template |
 | `Template/.claude/hooks/` | Hook scripts bundled with the template |
 | `Template/.claude/.template-manifest` | Template-owned files that `template-sync` copies (see Manifest) |
+| `Template/.claude/skills/template-sync/CHANGELOG.md` | Release notes per version — read by projects' session-start update check |
 | `Template/.claude/skills/template-sync/MIGRATIONS.md` | Breaking changes per major version |
 | `Template/.githooks/` | Git hooks bundled with the template |
 | `Template/docs/templates/` | Seed files new projects copy into `docs/` |
@@ -40,12 +41,14 @@ The template version is tracked in line 1 of `Template/CLAUDE.md`:
 
 Projects running `template-sync` compare this version string to decide whether to apply an update. A missed bump means they silently skip real changes.
 
+**Every bump adds a `## X.Y.Z — YYYY-MM-DD` entry at the top of `Template/.claude/skills/template-sync/CHANGELOG.md` in the same commit** — a few user-facing lines on what a project gains. Projects' session-start hook reads that file from `main` on GitHub: its newest heading is how they learn a version exists, so a bump without an entry is never announced. The heading must match line 1 of `Template/CLAUDE.md`.
+
 ### Breaking changes
 
 You do not control when, or from which version, a project upgrades — and it upgrades by running **its own, old** `template-sync`, not the one you just wrote.
 
 - A major release must work correctly after a sync run by the oldest `template-sync` still in use (every 0.x skill behaves the same: overwrite `CLAUDE.md`, `rsync --delete` skills/agents/`hooks/*/template/`, write the old inline dispatcher, never touch `settings.json`). It must not depend on the new sync for correctness — the new sync's repair mode only finishes the migration.
-- `hooks/*/dispatcher.sh` stays a stub forever. Hook-system changes go in `Template/.claude/hooks/pre-tool/template/lib/`, which every sync version copies. Keep `00-dispatch-shim.sh` in all three `template/` directories.
+- `hooks/*/dispatcher.sh` stays a stub forever. Hook-system changes go in `Template/.claude/hooks/pre-tool/template/lib/`, which every sync version copies. Keep `00-dispatch-shim.sh` in every `hooks/*/template/` directory.
 - Every major bump adds an entry to `Template/.claude/skills/template-sync/MIGRATIONS.md` in the same commit: what changes for an existing project, and any manual step.
 - Before releasing a major, simulate the upgrade: install the template from the oldest version still in use into a scratch repo, run that version's sync steps against the release branch, check the gates, then run the new sync and check the repair.
 

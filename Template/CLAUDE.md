@@ -1,4 +1,4 @@
-<!-- TEMPLATE VERSION: 1.1.0 -->
+<!-- TEMPLATE VERSION: 1.2.0 -->
 <!-- DO NOT EDIT — managed by ClaudeCodeTemplate -->
 <!-- Project-specific instructions go in docs/SYSTEM.md -->
 
@@ -17,6 +17,7 @@
    - `dev` → this is the planning checkout: pitches, tasks, specs, glossary. To write code, create or enter the task/scope worktree (see "Checkouts and Worktrees").
    - `task-T-*` / `scope-P-*` → this is a code worktree: run the Execution Loop for that task or scope.
 7. If `.claude/.template-manifest` does not exist, output: "Template migration incomplete — run the `template-sync` skill." (The manifest is written by template-sync v1.0.0 or later.)
+8. If the session context has a "ClaudeCodeTemplate update available" notice (from the session-start hook), tell the user once: the new version and its release notes in a few lines, and offer to run `template-sync`. Never run it without the user's yes.
 
 ## System Context
 
@@ -333,7 +334,7 @@ Do not commit until the review passes.
 
 ## Hard Gates
 
-Hooks in `.claude/hooks/pre-tool/template/` that block or ask before a tool call runs. Project-specific hooks go in `.claude/hooks/<type>/project/` (contract in `.claude/hooks/pre-tool/template/lib/dispatch.sh`).
+Hooks in `.claude/hooks/pre-tool/template/` that block or ask before a tool call runs. Project-specific hooks go in `.claude/hooks/<type>/project/` (`<type>`: `pre-tool`, `post-tool`, `stop`, `session-start`; contract in `.claude/hooks/pre-tool/template/lib/dispatch.sh`).
 
 | Hook | Trigger | Effect |
 |---|---|---|
@@ -353,6 +354,8 @@ This project uses `ClaudeCodeTemplate` as its base template. To pull in the late
 
 > **Run skill:** `template-sync`
 
-The skill updates `CLAUDE.md`, the template-owned files in `.claude/skills/` and `.claude/agents/` (listed in `.claude/.template-manifest`), `.claude/hooks/*/template/`, the dispatchers, and the template's hook entries in `.claude/settings.json`. It never touches `docs/SYSTEM.md`, `MEMORY.md`, `.claude/arch-check.sh`, project skills/agents, or your hook scripts under `.claude/hooks/*/project/`. Breaking changes per version are listed in `.claude/skills/template-sync/MIGRATIONS.md`.
+The skill updates `CLAUDE.md`, the template-owned files in `.claude/skills/` and `.claude/agents/` (listed in `.claude/.template-manifest`), `.claude/hooks/*/template/`, the dispatchers, and the template's hook entries in `.claude/settings.json`. It never touches `docs/SYSTEM.md`, `MEMORY.md`, `.claude/arch-check.sh`, project skills/agents, or your hook scripts under `.claude/hooks/*/project/`. Release notes per version are in `.claude/skills/template-sync/CHANGELOG.md`; breaking changes and manual steps in `MIGRATIONS.md` next to it.
+
+**Update check:** at the start of each new session, `.claude/hooks/session-start/template/01-template-update-check.sh` compares line 1 of this file with the latest template on GitHub (fetched at most once a day, silent when offline). When the project is behind, it adds the release notes to the session so you can offer the sync (Session Startup step 8). It never changes the project. To turn it off, set `CLAUDE_TEMPLATE_UPDATE_CHECK=0` in the `env` of `.claude/settings.local.json`.
 
 See `.claude/skills/template-sync/SKILL.md` for details.
