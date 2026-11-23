@@ -9,6 +9,12 @@ heading per release, matching line 1 of `CLAUDE.md`.
 
 ---
 
+## 1.2.1 — 2026-11-23
+
+- **Template version at session start.** The startup confirmation line now ends with the template version
+  this project uses (`· ClaudeCodeTemplate v1.2.1`), passed in by the session-start hook. It shows even with
+  the update check turned off.
+
 ## 1.2.0 — 2026-11-23
 
 - **Update check at session start.** A new `session-start` hook compares this project's template version
