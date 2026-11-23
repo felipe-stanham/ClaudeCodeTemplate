@@ -1,4 +1,4 @@
-<!-- TEMPLATE VERSION: 1.2.1 -->
+<!-- TEMPLATE VERSION: 1.3.0 -->
 <!-- DO NOT EDIT — managed by ClaudeCodeTemplate -->
 <!-- Project-specific instructions go in docs/SYSTEM.md -->
 
@@ -52,8 +52,9 @@ Every project must have a `.gitignore` that excludes at minimum:
 - `.env` — contains environment credentials
 - `.deploy-secrets` — contains deployment credentials
 - `docs/local/` — contains deployment targets and other host-specific notes that must not be shared
+- `.claude/worktrees/` — the code worktrees (see "Checkouts and Worktrees"); unignored, `git add -A` on `dev` would commit them as embedded repos
 - Verify these are present before the first commit. If `.gitignore` does not exist, create one.
-- *Enforced by* `03-no-secrets.sh` (denies `git add` / `git commit` while any of these is not ignored, tracked, or staged) and `.githooks/pre-commit`.
+- *Enforced by* `03-no-secrets.sh` (denies `git add` / `git commit` while any of these is not ignored, tracked, or staged; `.claude/worktrees/` is checked once it exists) and `.githooks/pre-commit`.
 
 ---
 
@@ -226,9 +227,11 @@ main (production-ready)
 
 - **The primary checkout stays on `dev`.** It is where planning happens: the `pitch`, `task`, `spec`, and `glossary` skills only run there, and commit + push their artifacts to `dev` as they are written.
 - **All code is written in a worktree** — one per task/scope branch, even with a single session:
-  `git worktree add ../<repo>-wt/<branch> -b <branch> dev` (base `main`/`tst` for a hotfix).
-  Worktrees live in a sibling directory, not inside the repo. Remove them after the merge: `git worktree remove ../<repo>-wt/<branch>`.
-  That directory is outside the session's folder, so some commands there (e.g. `chmod`) can be denied: add `../<repo>-wt` to the session's folders, or to `permissions.additionalDirectories` in `.claude/settings.local.json`.
+  `git worktree add .claude/worktrees/<branch> -b <branch> dev` (base `main`/`tst` for a hotfix).
+  Worktrees live in `.claude/worktrees/` inside the primary checkout (gitignored): it is inside the session's folder, so no extra permissions are needed, and it is where Claude Code keeps its own worktrees — the one `.claude/` subfolder it does not treat as protected. Work there from the session (switch into it, or `cd` and pass paths), or open a session in it.
+  Tools that scan the whole tree from the primary checkout must skip it: add `.claude/worktrees/` to `.dockerignore`, and to any test runner or linter configured to include dot-directories.
+  Do not use `claude --worktree` / the app's "new worktree" for tasks: they name the branch `worktree-<name>`, which `04-task-before-code.sh` rejects. Create the worktree with the command above.
+- **Remove the worktree when its branch is merged** (Promotion Flow step 1): `git worktree remove .claude/worktrees/<branch> && git branch -d <branch>`. Run `git worktree list` now and then; `git worktree prune` clears entries whose folder is gone.
 - **Parallel sessions** — run one session per worktree. Never manually clone the repo into separate folders. Do not use `isolation: worktree` for the `implementer` — it must work in the task/scope worktree the main session is in.
 
 | Change | Committed on | By |
@@ -248,7 +251,7 @@ main (production-ready)
 
 ### Promotion Flow
 
-1. **Task/scope → `dev`:** When the Execution Loop finishes (review passed, tests executed and passed, docs updated, branch pushed), merge the branch into `dev`. Then, on `dev`: mark the task/scope `[DONE]`, update its INDEX entry, promote critical acceptance criteria into `TESTS.md`, and push. Delete the branch and remove its worktree.
+1. **Task/scope → `dev`:** When the Execution Loop finishes (review passed, tests executed and passed, docs updated, branch pushed), merge the branch into `dev`. Then, on `dev`: mark the task/scope `[DONE]`, update its INDEX entry, promote critical acceptance criteria into `TESTS.md`, and push. Then remove the worktree and delete the branch: `git worktree remove .claude/worktrees/<branch> && git branch -d <branch>` (and `git push origin --delete <branch>` if it was pushed).
 2. **`dev` → `tst`:** When the project is complete (all scopes `[DONE]`), on `dev`: run regression tests (`tester`) and the `docs-audit` agent. Resolve every difference it reports (see "Documentation"). When both are clean, merge `dev` into `tst` and deploy to `tst` targets for validation.
 3. **`tst` → `main`:** After I review and approve on `tst`, merge `tst` into `main`. Deploy to `prd` targets.
 
