@@ -17,6 +17,10 @@ Pulls the latest version of [ClaudeCodeTemplate](https://github.com/felipe-stanh
   `.claude/hooks/*/dispatcher.sh`) are replaced; every other key and hook entry is kept
 - `.claude/.template-manifest` — replaced with the new one
 
+Projects on 1.2.0 or later are told at session start when a newer version is out (hook
+`session-start/template/01-template-update-check.sh`, release notes from `CHANGELOG.md`); this skill is
+what applies it.
+
 **Never touched:** `docs/SYSTEM.md`, `MEMORY.md`, `.claude/arch-check.sh`, `.claude/hooks/*/project/`,
 and any skill or agent not listed in the manifest (those belong to the project).
 
@@ -113,7 +117,7 @@ else
 fi
 
 # hooks/*/template/ is template-owned as a whole: drop anything the template doesn't ship
-for HOOK_TYPE in pre-tool post-tool stop; do
+for HOOK_TYPE in pre-tool post-tool stop session-start; do
   mkdir -p ".claude/hooks/$HOOK_TYPE/project"
   touch ".claude/hooks/$HOOK_TYPE/project/.gitkeep"
   find ".claude/hooks/$HOOK_TYPE/template" -type f 2>/dev/null | while IFS= read -r f; do
@@ -203,7 +207,7 @@ version was overwritten. Show the list to the user. On approval, restore each on
 All must pass. These run on every sync, even at equal versions:
 
 ```bash
-for t in pre-tool post-tool stop; do
+for t in pre-tool post-tool stop session-start; do
   grep -q TEMPLATE-DISPATCH-STUB ".claude/hooks/$t/dispatcher.sh" 2>/dev/null || echo "FAIL dispatcher $t is not the v1 stub"
 done
 [ -f .claude/.template-manifest ] || echo "FAIL .claude/.template-manifest missing"
@@ -223,8 +227,10 @@ template-sync complete
   Kept (project-owned): docs/SYSTEM.md, MEMORY.md, .claude/arch-check.sh, hooks/*/project/, {project skills/agents}
 ```
 
-Then read `.claude/skills/template-sync/MIGRATIONS.md` and show the user every entry for a version newer
-than `CURRENT_VERSION` and up to `INCOMING_VERSION` — these are the breaking changes they need to know about.
+Then show the user what changed, for every version newer than `CURRENT_VERSION` and up to `INCOMING_VERSION`:
+
+- the release notes from `.claude/skills/template-sync/CHANGELOG.md` — a few lines per version;
+- every entry in `.claude/skills/template-sync/MIGRATIONS.md` — the breaking changes and manual steps, in full.
 
 Suggest the user stage and commit on `dev` (keep this message — step 8 searches for it):
 ```

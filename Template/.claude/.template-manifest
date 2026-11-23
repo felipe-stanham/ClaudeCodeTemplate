@@ -19,6 +19,9 @@
 .claude/hooks/pre-tool/template/05-arch-check-before-push.sh
 .claude/hooks/pre-tool/template/lib/common.sh
 .claude/hooks/pre-tool/template/lib/dispatch.sh
+.claude/hooks/session-start/dispatcher.sh
+.claude/hooks/session-start/template/00-dispatch-shim.sh
+.claude/hooks/session-start/template/01-template-update-check.sh
 .claude/hooks/stop/dispatcher.sh
 .claude/hooks/stop/template/00-dispatch-shim.sh
 .claude/skills/README.md
@@ -36,6 +39,7 @@ seed .claude/skills/deployment-process/SKILL.md
 .claude/skills/system-map/kit/sections.py
 .claude/skills/system-map/kit/svgkit.py
 .claude/skills/task/SKILL.md
+.claude/skills/template-sync/CHANGELOG.md
 .claude/skills/template-sync/MIGRATIONS.md
 .claude/skills/template-sync/SKILL.md
 .githooks/pre-commit

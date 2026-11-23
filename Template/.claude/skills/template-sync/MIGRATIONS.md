@@ -5,6 +5,16 @@ Breaking changes per major version: what changes for an existing project, and an
 
 ---
 
+## 1.2.0 (minor — no manual step required)
+
+- New **`session-start`** hook type (`.claude/hooks/session-start/`, with its own `dispatcher.sh` stub and
+  a `SessionStart` entry in `settings.json`). Its first hook tells the session when a newer template is out.
+  It makes one request to `raw.githubusercontent.com` per machine per day; opt out with
+  `CLAUDE_TEMPLATE_UPDATE_CHECK=0`.
+- Release notes now live in `CHANGELOG.md` next to this file; `template-sync` shows both at the end.
+
+---
+
 ## 1.1.0 (minor — no manual step required)
 
 - **Docs gate (`01`)**: the generated system map (`docs/System/map.md`, `docs/System/map/`) no longer counts
