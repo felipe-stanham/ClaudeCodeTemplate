@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1300 360" width="1300" height="360" role="img" aria-label="Updates: the session-start hook announces a newer version; template-sync, only after your yes, replaces the template&#x27;s files and never yours.">
+<title>Updates: the session-start hook announces a newer version; template-sync, only after your yes, replaces the template&#x27;s files and never yours.</title>
+<style>:root{--bg:#F6F7F9;--raised:#FFFFFF;--frame:#ECEFF3;--ink:#16202A;--ink-2:#46525E;--ink-3:#5F6B77;--rule:#D3D9DF;--rule-strong:#8E9AA6;--accent:#2456C7;--accent-soft:#E3EBFB;--store:#D8E9E4;--ext:#F0F1F3;--ok:#1D6B42;--ok-soft:#DEF0E5;--warn:#8A5A00;--warn-soft:#FBEFD5;--bad:#B3261E;--bad-soft:#FBE4E2;--sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;--mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;}@media (prefers-color-scheme:dark){:root{--bg:#10161C;--raised:#18212A;--frame:#141C24;--ink:#E7ECF0;--ink-2:#B9C3CC;--ink-3:#97A3AE;--rule:#2B3742;--rule-strong:#56636F;--accent:#86A9FF;--accent-soft:#1D2A47;--store:#21403A;--ext:#1A2128;--ok:#6FD29B;--ok-soft:#173826;--warn:#E8B758;--warn-soft:#3A2C10;--bad:#F28B82;--bad-soft:#3F1D1B;}}text{font-family:var(--sans)}.t{fill:var(--ink)} .sub{fill:var(--ink-2)} .ttl{fill:var(--ink);font-weight:650} .m{font-family:var(--mono)}.cap{fill:var(--ink-3);font-size:11.5px;font-weight:600;letter-spacing:.05em}.fr-t{fill:var(--ink);font-weight:680}.lbl{font-weight:500;paint-order:stroke;stroke:var(--raised);stroke-width:4px;stroke-linejoin:round}.lk-call{fill:var(--ink-2)} .lk-main{fill:var(--accent)} .lk-fail{fill:var(--bad)} .lk-off{fill:var(--ink-3)}.bg{fill:var(--raised)}.fr-sys{fill:var(--frame);stroke:var(--ink);stroke-width:1.5} .fr-host{fill:none;stroke:var(--rule-strong);stroke-dasharray:6 4}.n-proc{fill:var(--raised);stroke:var(--ink);stroke-width:1.25} .n-store{fill:var(--store);stroke:var(--rule-strong)}.n-ext{fill:var(--ext);stroke:var(--rule-strong)} .n-off{fill:var(--raised);stroke:var(--ink-3);stroke-dasharray:5 4}.n-ok{fill:var(--ok-soft);stroke:var(--ok)} .n-warn{fill:var(--warn-soft);stroke:var(--warn)} .n-bad{fill:var(--bad-soft);stroke:var(--bad)}.e-call{stroke:var(--ink-2);stroke-width:1.4} .e-main{stroke:var(--accent);stroke-width:2.25}.e-fail{stroke:var(--bad);stroke-width:1.5;stroke-dasharray:5 4} .e-off{stroke:var(--ink-3);stroke-width:1.4;stroke-dasharray:2 4}.h-call{fill:var(--ink-2)} .h-main{fill:var(--accent)} .h-fail{fill:var(--bad)} .h-off{fill:var(--ink-3)}</style>
+<defs><marker id="f-05-updates-a-call" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" class="h-call"/></marker><marker id="f-05-updates-s-call" viewBox="0 0 10 10" refX="1" refY="5" markerWidth="7" markerHeight="7" markerUnits="userSpaceOnUse" orient="auto"><path d="M10,0 L0,5 L10,10 z" class="h-call"/></marker><marker id="f-05-updates-a-main" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" class="h-main"/></marker><marker id="f-05-updates-s-main" viewBox="0 0 10 10" refX="1" refY="5" markerWidth="7" markerHeight="7" markerUnits="userSpaceOnUse" orient="auto"><path d="M10,0 L0,5 L10,10 z" class="h-main"/></marker><marker id="f-05-updates-a-fail" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" class="h-fail"/></marker><marker id="f-05-updates-s-fail" viewBox="0 0 10 10" refX="1" refY="5" markerWidth="7" markerHeight="7" markerUnits="userSpaceOnUse" orient="auto"><path d="M10,0 L0,5 L10,10 z" class="h-fail"/></marker><marker id="f-05-updates-a-off" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" class="h-off"/></marker><marker id="f-05-updates-s-off" viewBox="0 0 10 10" refX="1" refY="5" markerWidth="7" markerHeight="7" markerUnits="userSpaceOnUse" orient="auto"><path d="M10,0 L0,5 L10,10 z" class="h-off"/></marker></defs>
+<rect x="0" y="0" width="1300" height="360" class="bg"/>
+<rect x="24" y="130" width="230" height="84" rx="4" class="n-ext"/>
+<text x="34" y="150" class="ttl" text-anchor="start" font-size="13.5">ClaudeCodeTemplate</text>
+<text x="34" y="167" class="sub m" text-anchor="start" font-size="11.5">main · Template/</text>
+<text x="34" y="183" class="sub m" text-anchor="start" font-size="11.5">CHANGELOG.md</text>
+<rect x="340" y="30" width="270" height="84" rx="4" class="n-proc"/>
+<text x="350" y="50" class="ttl" text-anchor="start" font-size="13.5">Hook session-start</text>
+<text x="350" y="67" class="sub m" text-anchor="start" font-size="11.5">01-template-update-check</text>
+<text x="350" y="83" class="sub" text-anchor="start" font-size="12">every 24 h at most · 2 s cap</text>
+<rect x="680" y="30" width="260" height="84" rx="4" class="n-store"/>
+<text x="690" y="50" class="ttl" text-anchor="start" font-size="13.5">Session context</text>
+<text x="690" y="67" class="sub" text-anchor="start" font-size="12">version in use (v1.3.0)</text>
+<text x="690" y="83" class="sub" text-anchor="start" font-size="12">+ release notes if behind</text>
+<rect x="1010" y="30" width="266" height="84" rx="4" class="n-ext"/>
+<text x="1020" y="50" class="ttl" text-anchor="start" font-size="13.5">You</text>
+<text x="1020" y="67" class="sub" text-anchor="start" font-size="12">decide whether to sync</text>
+<text x="1020" y="83" class="sub" text-anchor="start" font-size="12">it never syncs by itself</text>
+<rect x="340" y="196" width="270" height="120" rx="4" class="n-proc"/>
+<text x="350" y="216" class="ttl" text-anchor="start" font-size="13.5">template-sync skill</text>
+<text x="350" y="233" class="sub" text-anchor="start" font-size="12">on dev, clean tree</text>
+<text x="350" y="249" class="sub" text-anchor="start" font-size="12">copies the manifest files</text>
+<text x="350" y="265" class="sub" text-anchor="start" font-size="12">merges its settings hooks</text>
+<text x="350" y="281" class="sub" text-anchor="start" font-size="12">repairs old upgrades</text>
+<rect x="680" y="196" width="260" height="120" rx="4" class="n-store"/>
+<text x="690" y="216" class="ttl" text-anchor="start" font-size="13.5">Replaced (template-owned)</text>
+<text x="690" y="233" class="sub m" text-anchor="start" font-size="11.5">CLAUDE.md</text>
+<text x="690" y="249" class="sub" text-anchor="start" font-size="12">50 files in the manifest</text>
+<text x="690" y="265" class="sub m" text-anchor="start" font-size="11.5">hooks/*/template/</text>
+<text x="690" y="281" class="sub" text-anchor="start" font-size="12">settings: only its hooks</text>
+<rect x="1010" y="196" width="266" height="120" rx="4" class="n-store"/>
+<text x="1020" y="216" class="ttl" text-anchor="start" font-size="13.5">Never touched (yours)</text>
+<text x="1020" y="233" class="sub m" text-anchor="start" font-size="11.5">docs/SYSTEM.md</text>
+<text x="1020" y="249" class="sub m" text-anchor="start" font-size="11.5">MEMORY.md</text>
+<text x="1020" y="265" class="sub m" text-anchor="start" font-size="11.5">.claude/arch-check.sh</text>
+<text x="1020" y="281" class="sub m" text-anchor="start" font-size="11.5">.claude/hooks/*/project/</text>
+<text x="1020" y="297" class="sub" text-anchor="start" font-size="12">your own skills/agents</text>
+<polyline points="254,150 296,150 296,72 340,72" class="e-off" fill="none" marker-end="url(#f-05-updates-a-off)"/>
+<text x="306" y="112" class="lbl lk-off" text-anchor="start" font-size="11.5">reads</text>
+<polyline points="610,72 680,72" class="e-main" fill="none" marker-end="url(#f-05-updates-a-main)"/>
+<polyline points="940,72 1010,72" class="e-main" fill="none" marker-end="url(#f-05-updates-a-main)"/>
+<polyline points="1143,114 1143,156 475,156 475,196" class="e-call" fill="none" marker-end="url(#f-05-updates-a-call)"/>
+<text x="809" y="148" class="lbl lk-call" text-anchor="middle" font-size="11.5">“yes” → template-sync</text>
+<polyline points="254,190 296,190 296,256 340,256" class="e-main" fill="none" marker-end="url(#f-05-updates-a-main)"/>
+<text x="306" y="230" class="lbl lk-main" text-anchor="start" font-size="11.5">clones</text>
+<polyline points="610,256 680,256" class="e-main" fill="none" marker-end="url(#f-05-updates-a-main)"/>
+<text x="645" y="248" class="lbl lk-main" text-anchor="middle" font-size="11.5">copies</text>
+<polyline points="475,316 475,340 1143,340 1143,316" class="e-off" fill="none" marker-end="url(#f-05-updates-a-off)"/>
+<text x="809" y="334" class="lbl lk-off" text-anchor="middle" font-size="11.5">never touches</text>
+</svg>

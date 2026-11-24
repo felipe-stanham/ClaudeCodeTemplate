@@ -1,6 +1,6 @@
 # Claude Code — ClaudeCodeTemplate Repo Instructions
 
-This repo IS the template. All template content lives under `Template/`. The repo root contains only `README.md` and this file.
+This repo IS the template. All template content lives under `Template/`. The repo root contains only `README.md`, this file, and `map/` (the generated map of the template).
 
 ---
 
@@ -18,6 +18,7 @@ This repo IS the template. All template content lives under `Template/`. The rep
 | `Template/.githooks/` | Git hooks bundled with the template |
 | `Template/docs/templates/` | Seed files new projects copy into `docs/` |
 | `README.md` | Public-facing description of the template |
+| `map/` | Map of the template, generated from `Template/` by `map/build.py` (see Template map) |
 
 Do NOT create `docs/`, `MEMORY.md`, pitches, tasks, or projects in this repo. This repo does not use the template — it is the template.
 
@@ -68,9 +69,19 @@ Hook scripts, dispatchers, and `.githooks/pre-commit` must be committed as `1007
 
 ---
 
+## Template map
+
+`map/` explains the template to anyone who opens the repo: `map/README.md` (rendered by GitHub), `map/index.html` (full page) and `map/svg/`. They are generated from `Template/` by `map/build.py` (engine copied from the `system-map` skill's kit) — never edit them by hand.
+
+- **Every commit that changes `Template/` also runs `python3 map/build.py`** and commits the result. Before pushing, `python3 map/build.py --check` must pass.
+- `--check` also fails when the template has something the figures do not draw (a new skill, agent, hook or Execution Loop step) or when a hook stops doing what the map says. The message names the constant to edit in `map/facts.py`, `map/figures.py` or `map/sections.py`. Fix the map; never weaken a guard to make it pass.
+- The map is written in English, like the rest of the repo. Values (version, models, counts) come from `Template/`, never typed into the text.
+
+---
+
 ## README
 
-When adding or removing a skill or agent from `Template/`, update the feature table in `README.md` in the same commit.
+When adding or removing a skill or agent from `Template/`, update the feature table in `README.md` in the same commit. The README embeds `map/svg/01-overview.svg` and links to `map/`.
 
 ---
 

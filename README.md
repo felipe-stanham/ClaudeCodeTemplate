@@ -2,6 +2,12 @@
 
 A ready-to-use template for coding projects using [Claude Code](https://claude.ai/code). It bundles the `CLAUDE.md` project instructions, custom agents, skills, hooks, and doc templates I use across all my projects.
 
+## How it works: the map
+
+[![Overview: what the template installs in a project and how the parts connect](map/svg/01-overview.svg)](map/)
+
+**[Open the template map →](map/)** Five figures explain the whole template: what it installs, how work goes from an idea to merged code, the Execution Loop and its agents, the hooks and the gates they enforce, and how template updates reach a project. The map is generated from `Template/` by `map/build.py`, so it always matches the version in this repo. For the full page with dark mode and an index, clone the repo and open `map/index.html` in a browser.
+
 ## What's included
 
 | Path | Purpose |

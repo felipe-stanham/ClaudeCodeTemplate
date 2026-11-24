@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1300 400" width="1300" height="400" role="img" aria-label="Execution Loop: the steps of every task or scope, the agent that runs each one, the rework when review or test fails, and the BLOCKED path.">
+<title>Execution Loop: the steps of every task or scope, the agent that runs each one, the rework when review or test fails, and the BLOCKED path.</title>
+<style>:root{--bg:#F6F7F9;--raised:#FFFFFF;--frame:#ECEFF3;--ink:#16202A;--ink-2:#46525E;--ink-3:#5F6B77;--rule:#D3D9DF;--rule-strong:#8E9AA6;--accent:#2456C7;--accent-soft:#E3EBFB;--store:#D8E9E4;--ext:#F0F1F3;--ok:#1D6B42;--ok-soft:#DEF0E5;--warn:#8A5A00;--warn-soft:#FBEFD5;--bad:#B3261E;--bad-soft:#FBE4E2;--sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;--mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;}@media (prefers-color-scheme:dark){:root{--bg:#10161C;--raised:#18212A;--frame:#141C24;--ink:#E7ECF0;--ink-2:#B9C3CC;--ink-3:#97A3AE;--rule:#2B3742;--rule-strong:#56636F;--accent:#86A9FF;--accent-soft:#1D2A47;--store:#21403A;--ext:#1A2128;--ok:#6FD29B;--ok-soft:#173826;--warn:#E8B758;--warn-soft:#3A2C10;--bad:#F28B82;--bad-soft:#3F1D1B;}}text{font-family:var(--sans)}.t{fill:var(--ink)} .sub{fill:var(--ink-2)} .ttl{fill:var(--ink);font-weight:650} .m{font-family:var(--mono)}.cap{fill:var(--ink-3);font-size:11.5px;font-weight:600;letter-spacing:.05em}.fr-t{fill:var(--ink);font-weight:680}.lbl{font-weight:500;paint-order:stroke;stroke:var(--raised);stroke-width:4px;stroke-linejoin:round}.lk-call{fill:var(--ink-2)} .lk-main{fill:var(--accent)} .lk-fail{fill:var(--bad)} .lk-off{fill:var(--ink-3)}.bg{fill:var(--raised)}.fr-sys{fill:var(--frame);stroke:var(--ink);stroke-width:1.5} .fr-host{fill:none;stroke:var(--rule-strong);stroke-dasharray:6 4}.n-proc{fill:var(--raised);stroke:var(--ink);stroke-width:1.25} .n-store{fill:var(--store);stroke:var(--rule-strong)}.n-ext{fill:var(--ext);stroke:var(--rule-strong)} .n-off{fill:var(--raised);stroke:var(--ink-3);stroke-dasharray:5 4}.n-ok{fill:var(--ok-soft);stroke:var(--ok)} .n-warn{fill:var(--warn-soft);stroke:var(--warn)} .n-bad{fill:var(--bad-soft);stroke:var(--bad)}.e-call{stroke:var(--ink-2);stroke-width:1.4} .e-main{stroke:var(--accent);stroke-width:2.25}.e-fail{stroke:var(--bad);stroke-width:1.5;stroke-dasharray:5 4} .e-off{stroke:var(--ink-3);stroke-width:1.4;stroke-dasharray:2 4}.h-call{fill:var(--ink-2)} .h-main{fill:var(--accent)} .h-fail{fill:var(--bad)} .h-off{fill:var(--ink-3)}</style>
+<defs><marker id="f-03-execution-loop-a-call" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" class="h-call"/></marker><marker id="f-03-execution-loop-s-call" viewBox="0 0 10 10" refX="1" refY="5" markerWidth="7" markerHeight="7" markerUnits="userSpaceOnUse" orient="auto"><path d="M10,0 L0,5 L10,10 z" class="h-call"/></marker><marker id="f-03-execution-loop-a-main" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" class="h-main"/></marker><marker id="f-03-execution-loop-s-main" viewBox="0 0 10 10" refX="1" refY="5" markerWidth="7" markerHeight="7" markerUnits="userSpaceOnUse" orient="auto"><path d="M10,0 L0,5 L10,10 z" class="h-main"/></marker><marker id="f-03-execution-loop-a-fail" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" class="h-fail"/></marker><marker id="f-03-execution-loop-s-fail" viewBox="0 0 10 10" refX="1" refY="5" markerWidth="7" markerHeight="7" markerUnits="userSpaceOnUse" orient="auto"><path d="M10,0 L0,5 L10,10 z" class="h-fail"/></marker><marker id="f-03-execution-loop-a-off" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" class="h-off"/></marker><marker id="f-03-execution-loop-s-off" viewBox="0 0 10 10" refX="1" refY="5" markerWidth="7" markerHeight="7" markerUnits="userSpaceOnUse" orient="auto"><path d="M10,0 L0,5 L10,10 z" class="h-off"/></marker></defs>
+<rect x="0" y="0" width="1300" height="400" class="bg"/>
+<rect x="24" y="210" width="160" height="100" rx="4" class="n-store"/>
+<text x="34" y="230" class="ttl" text-anchor="start" font-size="13.5">1 · Ready</text>
+<text x="34" y="247" class="sub" text-anchor="start" font-size="12">main session</text>
+<text x="34" y="263" class="sub" text-anchor="start" font-size="12">Definition of Ready</text>
+<text x="34" y="279" class="sub m" text-anchor="start" font-size="11.5">[IN PROGRESS] on dev</text>
+<rect x="206" y="210" width="160" height="100" rx="4" class="n-proc"/>
+<text x="216" y="230" class="ttl" text-anchor="start" font-size="13.5">2 · Implement</text>
+<text x="216" y="247" class="sub m" text-anchor="start" font-size="11.5">implementer</text>
+<text x="216" y="263" class="sub" text-anchor="start" font-size="12">sonnet · xhigh</text>
+<text x="216" y="279" class="sub" text-anchor="start" font-size="12">writes, never commits</text>
+<polyline points="184,250 206,250" class="e-main" fill="none" marker-end="url(#f-03-execution-loop-a-main)"/>
+<rect x="388" y="210" width="160" height="100" rx="4" class="n-proc"/>
+<text x="398" y="230" class="ttl" text-anchor="start" font-size="13.5">3 · Review</text>
+<text x="398" y="247" class="sub m" text-anchor="start" font-size="11.5">code-reviewer</text>
+<text x="398" y="263" class="sub" text-anchor="start" font-size="12">opus · xhigh</text>
+<text x="398" y="279" class="sub" text-anchor="start" font-size="12">BLOCK / WARN / OK</text>
+<polyline points="366,250 388,250" class="e-main" fill="none" marker-end="url(#f-03-execution-loop-a-main)"/>
+<rect x="570" y="210" width="160" height="100" rx="4" class="n-proc"/>
+<text x="580" y="230" class="ttl" text-anchor="start" font-size="13.5">4 · Test</text>
+<text x="580" y="247" class="sub m" text-anchor="start" font-size="11.5">tester</text>
+<text x="580" y="263" class="sub" text-anchor="start" font-size="12">opus · high</text>
+<text x="580" y="279" class="sub" text-anchor="start" font-size="12">runs the criteria</text>
+<polyline points="548,250 570,250" class="e-main" fill="none" marker-end="url(#f-03-execution-loop-a-main)"/>
+<rect x="752" y="210" width="160" height="100" rx="4" class="n-proc"/>
+<text x="762" y="230" class="ttl" text-anchor="start" font-size="13.5">6 · Document</text>
+<text x="762" y="247" class="sub m" text-anchor="start" font-size="11.5">doc-updater</text>
+<text x="762" y="263" class="sub" text-anchor="start" font-size="12">sonnet · medium</text>
+<text x="762" y="279" class="sub" text-anchor="start" font-size="12">docs/System + map</text>
+<polyline points="730,250 752,250" class="e-main" fill="none" marker-end="url(#f-03-execution-loop-a-main)"/>
+<rect x="934" y="210" width="160" height="100" rx="4" class="n-store"/>
+<text x="944" y="230" class="ttl" text-anchor="start" font-size="13.5">7 · Commit</text>
+<text x="944" y="247" class="sub" text-anchor="start" font-size="12">main session</text>
+<text x="944" y="263" class="sub" text-anchor="start" font-size="12">code + tests + docs</text>
+<text x="944" y="279" class="sub" text-anchor="start" font-size="12">push: gates 01 and 05</text>
+<polyline points="912,250 934,250" class="e-main" fill="none" marker-end="url(#f-03-execution-loop-a-main)"/>
+<rect x="1116" y="210" width="160" height="100" rx="4" class="n-store"/>
+<text x="1126" y="230" class="ttl" text-anchor="start" font-size="13.5">8 · Merge</text>
+<text x="1126" y="247" class="sub" text-anchor="start" font-size="12">merge into dev</text>
+<text x="1126" y="263" class="sub m" text-anchor="start" font-size="11.5">[DONE] + TESTS.md</text>
+<text x="1126" y="279" class="sub" text-anchor="start" font-size="12">remove the worktree</text>
+<polyline points="1094,250 1116,250" class="e-main" fill="none" marker-end="url(#f-03-execution-loop-a-main)"/>
+<polyline points="468,310 468,350" class="e-fail" fill="none"/>
+<polyline points="650,310 650,350 286,350 286,310" class="e-fail" fill="none" marker-end="url(#f-03-execution-loop-a-fail)"/>
+<text x="468" y="374" class="lbl lk-fail" text-anchor="middle" font-size="11.5">5 · Rework: BLOCK or FAIL → implementer on opus + the findings · at most 2 cycles, then you decide</text>
+<rect x="206" y="40" width="250" height="72" rx="4" class="n-ext"/>
+<text x="216" y="60" class="ttl" text-anchor="start" font-size="13.5">You</text>
+<text x="216" y="77" class="sub" text-anchor="start" font-size="12">answer the BLOCKED</text>
+<text x="216" y="93" class="sub" text-anchor="start" font-size="12">decide after 2 reworks</text>
+<rect x="560" y="40" width="260" height="72" rx="4" class="n-store"/>
+<text x="570" y="60" class="ttl" text-anchor="start" font-size="13.5">Task or spec on dev</text>
+<text x="570" y="77" class="sub" text-anchor="start" font-size="12">fixed and pushed</text>
+<text x="570" y="93" class="sub m" text-anchor="start" font-size="11.5">git merge dev in the branch</text>
+<polyline points="250,210 250,112" class="e-fail" fill="none" marker-end="url(#f-03-execution-loop-a-fail)"/>
+<text x="240" y="170" class="lbl lk-fail" text-anchor="end" font-size="11.5">BLOCKED: question</text>
+<polyline points="456,76 560,76" class="e-call" fill="none" marker-end="url(#f-03-execution-loop-a-call)"/>
+<polyline points="690,112 690,160 320,160 320,210" class="e-call" fill="none" marker-end="url(#f-03-execution-loop-a-call)"/>
+<text x="505" y="152" class="lbl lk-call" text-anchor="middle" font-size="11.5">re-invokes</text>
+</svg>

@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1300 520" width="1300" height="520" role="img" aria-label="Hooks: how a tool call goes through settings.json, the dispatcher and the runner, which runs every gate and combines their exit codes into allow, ask or deny.">
+<title>Hooks: how a tool call goes through settings.json, the dispatcher and the runner, which runs every gate and combines their exit codes into allow, ask or deny.</title>
+<style>:root{--bg:#F6F7F9;--raised:#FFFFFF;--frame:#ECEFF3;--ink:#16202A;--ink-2:#46525E;--ink-3:#5F6B77;--rule:#D3D9DF;--rule-strong:#8E9AA6;--accent:#2456C7;--accent-soft:#E3EBFB;--store:#D8E9E4;--ext:#F0F1F3;--ok:#1D6B42;--ok-soft:#DEF0E5;--warn:#8A5A00;--warn-soft:#FBEFD5;--bad:#B3261E;--bad-soft:#FBE4E2;--sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;--mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;}@media (prefers-color-scheme:dark){:root{--bg:#10161C;--raised:#18212A;--frame:#141C24;--ink:#E7ECF0;--ink-2:#B9C3CC;--ink-3:#97A3AE;--rule:#2B3742;--rule-strong:#56636F;--accent:#86A9FF;--accent-soft:#1D2A47;--store:#21403A;--ext:#1A2128;--ok:#6FD29B;--ok-soft:#173826;--warn:#E8B758;--warn-soft:#3A2C10;--bad:#F28B82;--bad-soft:#3F1D1B;}}text{font-family:var(--sans)}.t{fill:var(--ink)} .sub{fill:var(--ink-2)} .ttl{fill:var(--ink);font-weight:650} .m{font-family:var(--mono)}.cap{fill:var(--ink-3);font-size:11.5px;font-weight:600;letter-spacing:.05em}.fr-t{fill:var(--ink);font-weight:680}.lbl{font-weight:500;paint-order:stroke;stroke:var(--raised);stroke-width:4px;stroke-linejoin:round}.lk-call{fill:var(--ink-2)} .lk-main{fill:var(--accent)} .lk-fail{fill:var(--bad)} .lk-off{fill:var(--ink-3)}.bg{fill:var(--raised)}.fr-sys{fill:var(--frame);stroke:var(--ink);stroke-width:1.5} .fr-host{fill:none;stroke:var(--rule-strong);stroke-dasharray:6 4}.n-proc{fill:var(--raised);stroke:var(--ink);stroke-width:1.25} .n-store{fill:var(--store);stroke:var(--rule-strong)}.n-ext{fill:var(--ext);stroke:var(--rule-strong)} .n-off{fill:var(--raised);stroke:var(--ink-3);stroke-dasharray:5 4}.n-ok{fill:var(--ok-soft);stroke:var(--ok)} .n-warn{fill:var(--warn-soft);stroke:var(--warn)} .n-bad{fill:var(--bad-soft);stroke:var(--bad)}.e-call{stroke:var(--ink-2);stroke-width:1.4} .e-main{stroke:var(--accent);stroke-width:2.25}.e-fail{stroke:var(--bad);stroke-width:1.5;stroke-dasharray:5 4} .e-off{stroke:var(--ink-3);stroke-width:1.4;stroke-dasharray:2 4}.h-call{fill:var(--ink-2)} .h-main{fill:var(--accent)} .h-fail{fill:var(--bad)} .h-off{fill:var(--ink-3)}</style>
+<defs><marker id="f-04-hooks-a-call" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" class="h-call"/></marker><marker id="f-04-hooks-s-call" viewBox="0 0 10 10" refX="1" refY="5" markerWidth="7" markerHeight="7" markerUnits="userSpaceOnUse" orient="auto"><path d="M10,0 L0,5 L10,10 z" class="h-call"/></marker><marker id="f-04-hooks-a-main" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" class="h-main"/></marker><marker id="f-04-hooks-s-main" viewBox="0 0 10 10" refX="1" refY="5" markerWidth="7" markerHeight="7" markerUnits="userSpaceOnUse" orient="auto"><path d="M10,0 L0,5 L10,10 z" class="h-main"/></marker><marker id="f-04-hooks-a-fail" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" class="h-fail"/></marker><marker id="f-04-hooks-s-fail" viewBox="0 0 10 10" refX="1" refY="5" markerWidth="7" markerHeight="7" markerUnits="userSpaceOnUse" orient="auto"><path d="M10,0 L0,5 L10,10 z" class="h-fail"/></marker><marker id="f-04-hooks-a-off" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" class="h-off"/></marker><marker id="f-04-hooks-s-off" viewBox="0 0 10 10" refX="1" refY="5" markerWidth="7" markerHeight="7" markerUnits="userSpaceOnUse" orient="auto"><path d="M10,0 L0,5 L10,10 z" class="h-off"/></marker></defs>
+<rect x="0" y="0" width="1300" height="520" class="bg"/>
+<rect x="24" y="200" width="190" height="84" rx="4" class="n-ext"/>
+<text x="34" y="220" class="ttl" text-anchor="start" font-size="13.5">Claude Code</text>
+<text x="34" y="237" class="sub" text-anchor="start" font-size="12">about to use a tool</text>
+<text x="34" y="253" class="sub m" text-anchor="start" font-size="11.5">Bash · Edit · Write…</text>
+<rect x="250" y="200" width="200" height="84" rx="4" class="n-store"/>
+<text x="260" y="220" class="ttl m" text-anchor="start" font-size="13.5">settings.json</text>
+<text x="260" y="237" class="sub" text-anchor="start" font-size="12">4 events → dispatchers</text>
+<text x="260" y="253" class="sub" text-anchor="start" font-size="12">pre-tool: Bash and edits</text>
+<rect x="486" y="200" width="190" height="84" rx="4" class="n-proc"/>
+<text x="496" y="220" class="ttl m" text-anchor="start" font-size="13.5">dispatcher.sh</text>
+<text x="496" y="237" class="sub" text-anchor="start" font-size="12">one stub per type</text>
+<text x="496" y="253" class="sub" text-anchor="start" font-size="12">never changes</text>
+<rect x="712" y="180" width="220" height="124" rx="4" class="n-proc"/>
+<text x="722" y="200" class="ttl m" text-anchor="start" font-size="13.5">lib/dispatch.sh</text>
+<text x="722" y="217" class="sub" text-anchor="start" font-size="12">runs template/*.sh,</text>
+<text x="722" y="233" class="sub" text-anchor="start" font-size="12">then project/*.sh</text>
+<text x="722" y="249" class="sub" text-anchor="start" font-size="12">each one reads HOOK_*</text>
+<text x="722" y="265" class="sub" text-anchor="start" font-size="12">wins: deny › ask › allow</text>
+<polyline points="214,242 250,242" class="e-main" fill="none" marker-end="url(#f-04-hooks-a-main)"/>
+<polyline points="450,242 486,242" class="e-main" fill="none" marker-end="url(#f-04-hooks-a-main)"/>
+<polyline points="676,242 712,242" class="e-main" fill="none" marker-end="url(#f-04-hooks-a-main)"/>
+<polyline points="932,242 952,242" class="e-call" fill="none"/>
+<polyline points="952,71 952,451" class="e-call" fill="none"/>
+<rect x="976" y="40" width="300" height="62" rx="4" class="n-proc"/>
+<text x="986" y="60" class="ttl m" text-anchor="start" font-size="13.5">01-check-docs-before-push</text>
+<text x="986" y="77" class="sub" text-anchor="start" font-size="11.5">git push</text>
+<text x="986" y="93" class="sub" text-anchor="start" font-size="11.5">deny: code changed, docs/System did not</text>
+<polyline points="952,71 976,71" class="e-call" fill="none" marker-end="url(#f-04-hooks-a-call)"/>
+<rect x="976" y="116" width="300" height="62" rx="4" class="n-proc"/>
+<text x="986" y="136" class="ttl m" text-anchor="start" font-size="13.5">02-protected-branch</text>
+<text x="986" y="153" class="sub" text-anchor="start" font-size="11.5">commit · merge · push on main/master/tst</text>
+<text x="986" y="169" class="sub" text-anchor="start" font-size="11.5">ask: your approval = the promotion</text>
+<polyline points="952,147 976,147" class="e-call" fill="none" marker-end="url(#f-04-hooks-a-call)"/>
+<rect x="976" y="192" width="300" height="62" rx="4" class="n-proc"/>
+<text x="986" y="212" class="ttl m" text-anchor="start" font-size="13.5">03-no-secrets</text>
+<text x="986" y="229" class="sub" text-anchor="start" font-size="11.5">git add · git commit</text>
+<text x="986" y="245" class="sub" text-anchor="start" font-size="11.5">deny: .env, .deploy-secrets, docs/local/</text>
+<polyline points="952,223 976,223" class="e-call" fill="none" marker-end="url(#f-04-hooks-a-call)"/>
+<rect x="976" y="268" width="300" height="62" rx="4" class="n-proc"/>
+<text x="986" y="288" class="ttl m" text-anchor="start" font-size="13.5">04-task-before-code</text>
+<text x="986" y="305" class="sub" text-anchor="start" font-size="11.5">Edit / Write on code</text>
+<text x="986" y="321" class="sub" text-anchor="start" font-size="11.5">deny: outside task-T-* / scope-P-*</text>
+<polyline points="952,299 976,299" class="e-call" fill="none" marker-end="url(#f-04-hooks-a-call)"/>
+<rect x="976" y="344" width="300" height="62" rx="4" class="n-proc"/>
+<text x="986" y="364" class="ttl m" text-anchor="start" font-size="13.5">05-arch-check-before-push</text>
+<text x="986" y="381" class="sub" text-anchor="start" font-size="11.5">git push</text>
+<text x="986" y="397" class="sub" text-anchor="start" font-size="11.5">deny: .claude/arch-check.sh fails</text>
+<polyline points="952,375 976,375" class="e-call" fill="none" marker-end="url(#f-04-hooks-a-call)"/>
+<rect x="976" y="420" width="300" height="62" rx="4" class="n-off"/>
+<text x="986" y="440" class="ttl m" text-anchor="start" font-size="13.5">project/*.sh</text>
+<text x="986" y="457" class="sub" text-anchor="start" font-size="11.5">your hooks, same contract</text>
+<text x="986" y="473" class="sub" text-anchor="start" font-size="11.5">exit 0 · 2 · 3</text>
+<polyline points="952,451 976,451" class="e-call" fill="none" marker-end="url(#f-04-hooks-a-call)"/>
+<polyline points="822,304 822,356" class="e-call" fill="none"/>
+<polyline points="350,356 822,356" class="e-call" fill="none"/>
+<rect x="250" y="380" width="200" height="60" rx="4" class="n-ok"/>
+<text x="260" y="400" class="ttl" text-anchor="start" font-size="13.5">exit 0 · allow</text>
+<text x="260" y="417" class="sub" text-anchor="start" font-size="12">the tool runs</text>
+<rect x="486" y="380" width="190" height="60" rx="4" class="n-warn"/>
+<text x="496" y="400" class="ttl" text-anchor="start" font-size="13.5">exit 3 · ask</text>
+<text x="496" y="417" class="sub" text-anchor="start" font-size="12">asks you</text>
+<rect x="712" y="380" width="220" height="60" rx="4" class="n-bad"/>
+<text x="722" y="400" class="ttl" text-anchor="start" font-size="13.5">exit 2 · deny</text>
+<text x="722" y="417" class="sub" text-anchor="start" font-size="12">the reason goes to Claude</text>
+<polyline points="350,356 350,380" class="e-call" fill="none" marker-end="url(#f-04-hooks-a-call)"/>
+<polyline points="581,356 581,380" class="e-call" fill="none" marker-end="url(#f-04-hooks-a-call)"/>
+<polyline points="822,356 822,380" class="e-call" fill="none" marker-end="url(#f-04-hooks-a-call)"/>
+<text x="24" y="480" class="sub" text-anchor="start" font-size="12">All 0 → allow. Any 3 and no 2 → ask. Any 2 → deny. Any other code → a visible hook error that does not block.</text>
+</svg>
